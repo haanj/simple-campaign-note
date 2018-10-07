@@ -27,9 +27,11 @@ class CardList extends Component {
     });
 
     return (
+      <nav class="card-list list-container">
         <ul>
           { cards }
         </ul>
+      </nav>
     );
   }
 }
