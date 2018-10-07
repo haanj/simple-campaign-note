@@ -10,13 +10,20 @@ class CardList extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.cards !== this.props.cards) {
-      this.setState({ cards: nextProps.cards })
+      this.setState({ cards: nextProps.cards });
     }
   }
 
   render() {
     const cards = this.state.cards.map(card => {
-      return <li key={card.id}>{card.name}</li>
+      return (
+        <li
+          key={card.id}
+          onClick={() => this.props.changeCard(card.id)}
+        >
+          {card.name}
+        </li>
+      )
     });
 
     return (
@@ -27,4 +34,4 @@ class CardList extends Component {
   }
 }
 
-export default CardList
+export default CardList;

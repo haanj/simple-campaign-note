@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import { cards } from './cardSeeds';
+
 import CategoryList from './CategoryList';
 import CardList from './CardList';
+import Card from './Card';
 
 
 class App extends Component {
@@ -10,10 +12,11 @@ class App extends Component {
     super(props);
     this.state = { 
       categories: cards,
-      activeCategory: cards[0]
+      activeCategory: cards[0],
+      activeCard: cards[0].cards[0]
     };
     this._handleChangeCategory = this._onChangeCategory.bind(this);
-    this.poop = true;
+    this._handleChangeCard = this._onChangeCard.bind(this);
   }
 
   _onChangeCategory(id) {
@@ -21,7 +24,18 @@ class App extends Component {
       return category.id === id;
     });
 
-    this.setState({ activeCategory });
+    this.setState({
+      activeCategory,
+      activeCard: activeCategory.cards[0]
+    });
+  }
+
+  _onChangeCard(id) {
+    const activeCard = this.state.activeCategory.cards.find(card => {
+      return card.id === id;
+    });
+
+    this.setState({ activeCard });
   }
 
   render() {
@@ -31,7 +45,11 @@ class App extends Component {
           categories={this.state.categories}
           changeCategory={this._handleChangeCategory}
         />
-        <CardList cards={this.state.activeCategory.cards} />
+        <CardList
+          cards={this.state.activeCategory.cards}
+          changeCard={this._handleChangeCard}
+        />
+        <Card card={this.state.activeCard} />
       </div>
     );
   }
