@@ -16,6 +16,12 @@ export const cards = [
         name: 'Jerry Smith',
         description: 'Yawn',
         text: 'Lorem ipsum blah blah blah'
+      },
+      {
+        id: 3,
+        name: 'Mike Truck',
+        description: 'Built like a truck',
+        text: 'Part man, part car'
       }
     ]
   },

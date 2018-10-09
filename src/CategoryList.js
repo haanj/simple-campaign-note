@@ -21,7 +21,7 @@ class CategoryList extends Component {
     });
 
     return (
-      <nav class="category-list list-container">
+      <nav className="category-list list-container">
         <ul>
           { categories }
         </ul>

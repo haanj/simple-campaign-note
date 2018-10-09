@@ -1,0 +1,64 @@
+@import './variables';
+
+* {
+  color: $font-color-primary;
+}
+
+.list-container {
+  display: inline-flex;
+  width: 300px;
+  padding: 1rem;
+  border: 2px solid $font-color-primary;
+  margin-top: 3rem;
+  box-shadow: $box-shadow;
+
+  &.category-list {
+    margin-left: 2rem;
+    min-height: 40vh;
+    border-radius: $border-radius;
+  }
+
+  &.card-list {
+    border-left: none;
+    position: relative;
+    top: 1rem;
+    border-bottom-right-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  ul {
+    width: 100%;
+    padding: 1rem;
+    li {
+      list-style-type: none;
+      font-size: 2rem;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+}
+
+.card-container {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  top: 4rem;
+  left: 1rem;
+
+  border: 2px solid $font-color-primary;
+  border-radius: $border-radius;
+  width: 800px;
+  padding: 2rem;
+
+  box-shadow: $box-shadow;
+  
+  .card-name {
+    font-size: 2.5rem;
+    align-self: center;
+  }
+
+  label {
+    padding: 1rem 1rem 0 1rem;
+    font-style: italic;
+  }
+}

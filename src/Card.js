@@ -18,11 +18,15 @@ class Card extends Component {
     const card = this.state.card;
 
     return (
-      <div>
-        <h1>{card.name}</h1>
-        <div>{card.description}</div>
-        <div>{card.text}</div>
-      </div>
+      <section className="card-container">
+        <h1 className="card-name">{card.name}</h1>
+
+        <label for="card-description">Summary</label>
+        <div className="card-description">{card.description}</div>
+
+        <label for="card-text">Notes</label>
+        <div className="card-text">{card.text}</div>
+      </section>
     );
   }
 }
