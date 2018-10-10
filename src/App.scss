@@ -5,6 +5,7 @@
 }
 
 .list-container {
+  position: relative;
   display: inline-flex;
   width: 300px;
   padding: 1rem;
@@ -13,17 +14,29 @@
   box-shadow: $box-shadow;
 
   &.category-list {
+    z-index: 2;
     margin-left: 2rem;
     min-height: 40vh;
     border-radius: $border-radius;
+    background-color: white;
   }
 
   &.card-list {
+    z-index: 1;
+    transition: 1s;
     border-left: none;
-    position: relative;
+
+    left: -18rem;
+    width: 15rem;;
+
     top: 1rem;
     border-bottom-right-radius: $border-radius;
     border-top-right-radius: $border-radius;
+    
+    &.reveal {
+      left: 0;
+      width: 300px;
+    }
   }
 
   ul {

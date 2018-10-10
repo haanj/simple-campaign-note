@@ -8,6 +8,20 @@ class CardList extends Component {
     };
   }
 
+  componentDidMount() {
+    this.timeOut = setTimeout(() => {
+      this.setState({ show: true });
+    }, 300);
+  }
+
+  componentWillUnmount() {
+    if (this.timeOut) {
+      clearTimeout(this.timeOut);
+    }
+    this.setState({ show: false });
+  }
+
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.cards !== this.props.cards) {
       this.setState({ cards: nextProps.cards });
@@ -26,8 +40,10 @@ class CardList extends Component {
       )
     });
 
+    const className = `card-list list-container ${this.state.show ? 'reveal' : ''}`;
+
     return (
-      <nav className="card-list list-container">
+      <nav className={className} ref="listContainer">
         <ul>
           { cards }
         </ul>

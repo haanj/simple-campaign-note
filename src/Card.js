@@ -21,10 +21,10 @@ class Card extends Component {
       <section className="card-container">
         <h1 className="card-name">{card.name}</h1>
 
-        <label for="card-description">Summary</label>
+        <label htmlFor="card-description">Summary</label>
         <div className="card-description">{card.description}</div>
 
-        <label for="card-text">Notes</label>
+        <label htmlFor="card-text">Notes</label>
         <div className="card-text">{card.text}</div>
       </section>
     );
