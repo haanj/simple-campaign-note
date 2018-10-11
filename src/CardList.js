@@ -1,30 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class CardList extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       cards: props.cards
-    };
+    }
   }
 
   componentDidMount() {
-    this.timeOut = setTimeout(() => {
-      this.setState({ show: true });
-    }, 300);
+    this.setStateDelayed({ show: true })
   }
 
   componentWillUnmount() {
-    if (this.timeOut) {
-      clearTimeout(this.timeOut);
-    }
-    this.setState({ show: false });
+    this.clearTimeout()
   }
 
+  clearTimeout() {
+    if (this.timeOut) {
+      clearTimeout(this.timeOut)
+    }
+  }
+
+  setStateDelayed(newState, delay = 300) {
+    this.timeOut = setTimeout(() => {
+      this.setState(newState)
+    }, delay)
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.cards !== this.props.cards) {
-      this.setState({ cards: nextProps.cards });
+      this.clearTimeout()
+      this.setState({ show: false })
+      this.setStateDelayed({ cards: nextProps.cards, show: true})
     }
   }
 
@@ -38,18 +46,19 @@ class CardList extends Component {
           {card.name}
         </li>
       )
-    });
+    })
 
-    const className = `card-list list-container ${this.state.show ? 'reveal' : ''}`;
+    let className = `card-list list-container`
+    if (this.state.show) className += ` show`
 
     return (
-      <nav className={className} ref="listContainer">
+      <nav className={className}>
         <ul>
           { cards }
         </ul>
       </nav>
-    );
+    )
   }
 }
 
-export default CardList;
+export default CardList

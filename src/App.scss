@@ -23,7 +23,7 @@
 
   &.card-list {
     z-index: 1;
-    transition: 1s;
+    transition: 300ms;
     border-left: none;
 
     left: -18rem;
@@ -33,7 +33,7 @@
     border-bottom-right-radius: $border-radius;
     border-top-right-radius: $border-radius;
     
-    &.reveal {
+    &.show {
       left: 0;
       width: 300px;
     }

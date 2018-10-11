@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class CategoryList extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       categories: props.categories
-    };
+    }
   }
 
   render() {
@@ -18,7 +18,7 @@ class CategoryList extends Component {
           {category.name}
         </li>
       )
-    });
+    })
 
     return (
       <nav className="category-list list-container">
@@ -26,7 +26,7 @@ class CategoryList extends Component {
           { categories }
         </ul>
       </nav>
-    );
+    )
   }
 }
 

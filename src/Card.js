@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class Card extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       card: props.card
-    };
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.card !== this.props.card) {
-      this.setState({ card: nextProps.card });
+      this.setState({ card: nextProps.card })
     }
   }
 
   render() {
-    const card = this.state.card;
+    const card = this.state.card
 
     return (
       <section className="card-container">
@@ -27,8 +27,8 @@ class Card extends Component {
         <label htmlFor="card-text">Notes</label>
         <div className="card-text">{card.text}</div>
       </section>
-    );
+    )
   }
 }
 
-export default Card;
+export default Card

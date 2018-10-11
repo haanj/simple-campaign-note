@@ -1,41 +1,42 @@
-import React, { Component } from 'react';
-import './App.scss';
-import { cards } from './cardSeeds';
+import React, { Component } from 'react'
+import './App.scss'
 
-import CategoryList from './CategoryList';
-import CardList from './CardList';
-import Card from './Card';
+import { cards } from './cardSeeds'
+
+import CategoryList from './CategoryList'
+import CardList from './CardList'
+import Card from './Card'
 
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = { 
       categories: cards,
       activeCategory: cards[0],
       activeCard: cards[0].cards[0]
-    };
-    this._handleChangeCategory = this._onChangeCategory.bind(this);
-    this._handleChangeCard = this._onChangeCard.bind(this);
+    }
+    this._handleChangeCategory = this._onChangeCategory.bind(this)
+    this._handleChangeCard = this._onChangeCard.bind(this)
   }
 
   _onChangeCategory(id) {
     const activeCategory = this.state.categories.find(category => {
-      return category.id === id;
-    });
+      return category.id === id
+    })
 
     this.setState({
       activeCategory,
       activeCard: activeCategory.cards[0]
-    });
+    })
   }
 
   _onChangeCard(id) {
     const activeCard = this.state.activeCategory.cards.find(card => {
-      return card.id === id;
-    });
+      return card.id === id
+    })
 
-    this.setState({ activeCard });
+    this.setState({ activeCard })
   }
 
   render() {
@@ -51,8 +52,8 @@ class App extends Component {
         />
         <Card card={this.state.activeCard} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
