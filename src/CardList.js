@@ -50,6 +50,7 @@ class CardList extends Component {
       return (
         <li
           class={isActive ? 'active' : ''}
+          alt={isActive ? 'Active Card' : ''}
           key={card.id}
           onClick={() => this.props.changeCard(card.id)}
         >

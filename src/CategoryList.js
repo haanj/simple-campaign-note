@@ -23,6 +23,7 @@ class CategoryList extends Component {
       return (
         <li
           class={isActive ? 'active' : ''}
+          alt={isActive ? 'Active Category' : ''}
           key={category.id}
           onClick={() => this.props.changeCategory(category.id)}
         >
