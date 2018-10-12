@@ -13,12 +13,31 @@
   margin-top: 3rem;
   box-shadow: $box-shadow;
 
+  svg {
+    &:hover {
+      transform: scale(1.2);
+      transition: 100ms;
+    }
+  }
+
+  li {
+    transition: 100ms;
+    &.active {
+      font-weight: 600;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+
   &.category-list {
     z-index: 2;
     margin-left: 2rem;
     min-height: 40vh;
     border-radius: $border-radius;
     background-color: white;
+
   }
 
   &.card-list {

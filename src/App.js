@@ -7,6 +7,12 @@ import CategoryList from './CategoryList'
 import CardList from './CardList'
 import Card from './Card'
 
+// TODO: reduce glut once I know which icons I need
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+library.add(fas, far, fab)
 
 class App extends Component {
   constructor(props) {
@@ -44,10 +50,12 @@ class App extends Component {
       <div className="App">
         <CategoryList
           categories={this.state.categories}
+          activeCategoryId={this.state.activeCategory.id}
           changeCategory={this._handleChangeCategory}
         />
         <CardList
           cards={this.state.activeCategory.cards}
+          activeCardId={this.state.activeCard.id}
           changeCard={this._handleChangeCard}
         />
         <Card card={this.state.activeCard} />
