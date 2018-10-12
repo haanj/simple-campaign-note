@@ -66,7 +66,7 @@ class CardList extends Component {
       <nav className={className}>
         <ul>
           { cards }
-          <li key='addCard'>
+          <li class='add-button' key='addCard'>
             <FontAwesomeIcon icon={['far', 'plus-square']} />
           </li>
         </ul>

@@ -36,7 +36,7 @@ class CategoryList extends Component {
       <nav className="category-list list-container">
         <ul>
           { categories }
-          <li key='addCategory'>
+          <li class='add-button' key='addCategory'>
             <FontAwesomeIcon icon={['far', 'plus-square']} />
           </li>
         </ul>
