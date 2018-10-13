@@ -24,6 +24,11 @@ class CategoryList extends Component {
   render() {
     const categories = this.state.categories.map(category => {
       const isActive = category.id === this.state.activeCategoryId
+      const editIcon = (
+        <span className='edit-button'>
+          <FontAwesomeIcon icon={['far', 'edit']} />
+        </span>
+      )
 
       return (
         <li
@@ -33,6 +38,7 @@ class CategoryList extends Component {
           onClick={() => this.props.changeCategory(category.id)}
         >
           {category.name}
+          {editIcon}
         </li>
       )
     })

@@ -15,12 +15,29 @@
 
 
   li {
+    .edit-button {
+      width: 0;
+      overflow: hidden;
+      transition: 150ms;
+      position: absolute;
+      right: 0;
+      padding-top: 5px;
+      font-size: 1.5rem;
+    }
+
     transition: 100ms;
     &.active {
       font-weight: 600;
     }
     &:hover {
       transform: scale(1.1);
+
+      .edit-button {
+        width: 1.6rem;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
     }
     &.add-button:hover {
       transform: scale(1.3);
