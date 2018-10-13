@@ -52,14 +52,32 @@ class CardList extends Component {
   render() {
     const cards = this.state.cards.map(card => {
       const isActive = card.id === this.state.activeCardId
-      return (
-        <li
-          className={isActive ? 'active' : ''}
+
+      const editIcon = (
+        <span className='edit-button'>
+          <FontAwesomeIcon icon={['far', 'edit']} />
+        </span>
+      )
+
+      let className = 'name'
+      if (isActive) className += ' active'
+
+      const cardName = (
+        <span
+          className={className}
           alt={isActive ? 'Active Card' : ''}
-          key={card.id}
           onClick={() => this.props.changeCard(card.id)}
         >
           {card.name}
+        </span>
+      )
+
+      return (
+        <li
+          key={card.id}
+        >
+          {cardName}
+          {editIcon}
         </li>
       )
     })

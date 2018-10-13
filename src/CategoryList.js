@@ -30,7 +30,7 @@ class CategoryList extends Component {
         </span>
       )
 
-      let className = 'category-name'
+      let className = 'name'
       if (isActive) className += ' active'
 
       const categoryName = (
@@ -40,7 +40,6 @@ class CategoryList extends Component {
           onClick={() => this.props.changeCategory(category.id)}
         >
           {category.name}
-        
         </span>
       )
 

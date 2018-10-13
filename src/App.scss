@@ -7,7 +7,7 @@
 .list-container {
   position: relative;
   display: inline-flex;
-  width: 300px;
+  width: $container-width;
   padding: 1rem;
   border: 2px solid $font-color-primary;
   margin-top: 3rem;
@@ -25,7 +25,11 @@
       font-size: 1.5rem;
     }
 
-    .category-name {
+    .name {
+      width: $container-width - 100px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       display: inline-block;
       transition: 100ms;
       &.active {
@@ -74,7 +78,7 @@
     
     &.show {
       left: 0;
-      width: 300px;
+      width: $container-width;
     }
   }
 
