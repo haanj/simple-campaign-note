@@ -35,7 +35,7 @@ export const cards = [
         id: 3,
         name: 'Riverbend',
         description: 'Small river fishing village',
-        text: `The birthplace of Allan good, this is blah blah blah`
+        text: `The birthplace of Allan Goode, this is blah blah blah`
       },
       {
         id: 4,

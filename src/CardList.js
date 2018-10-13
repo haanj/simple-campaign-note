@@ -49,7 +49,7 @@ class CardList extends Component {
       const isActive = card.id === this.state.activeCardId
       return (
         <li
-          class={isActive ? 'active' : ''}
+          className={isActive ? 'active' : ''}
           alt={isActive ? 'Active Card' : ''}
           key={card.id}
           onClick={() => this.props.changeCard(card.id)}
@@ -66,7 +66,7 @@ class CardList extends Component {
       <nav className={className}>
         <ul>
           { cards }
-          <li class='add-button' key='addCard'>
+          <li className='add-button' key='addCard'>
             <FontAwesomeIcon icon={['far', 'plus-square']} />
           </li>
         </ul>

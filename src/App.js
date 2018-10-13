@@ -24,6 +24,13 @@ class App extends Component {
     }
     this._handleChangeCategory = this._onChangeCategory.bind(this)
     this._handleChangeCard = this._onChangeCard.bind(this)
+    this._handleAddCategory = this._onAddCategory.bind(this)
+  }
+
+  // TODO: Hacky and Won't be needed with backend
+  getNewModelId(list) {
+    let currentMaxId = list.reduce((curr, next) => Math.max(curr, next.id), 0)
+    return currentMaxId + 1
   }
 
   _onChangeCategory(id) {
@@ -35,6 +42,21 @@ class App extends Component {
       activeCategory,
       activeCard: activeCategory.cards[0]
     })
+  }
+
+  _onAddCategory(categoryInfo) {
+    const categories = this.state.categories.slice()
+    const defaults = {
+      id: this.getNewModelId(this.state.categories),
+      name: 'New Category',
+      description: 'This is a new category',
+      color: 'blue', // TODO: randomize
+      cards: []
+    }
+
+    const newCategory = Object.assign({}, defaults, categoryInfo)
+    categories.push(newCategory)
+    this.setState({categories})
   }
 
   _onChangeCard(id) {
@@ -52,10 +74,11 @@ class App extends Component {
           categories={this.state.categories}
           activeCategoryId={this.state.activeCategory.id}
           changeCategory={this._handleChangeCategory}
+          addCategory={this._handleAddCategory}
         />
         <CardList
           cards={this.state.activeCategory.cards}
-          activeCardId={this.state.activeCard.id}
+          activeCardId={this.state.activeCard && this.state.activeCard.id}
           changeCard={this._handleChangeCard}
         />
         <Card card={this.state.activeCard} />

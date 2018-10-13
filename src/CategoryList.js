@@ -14,6 +14,11 @@ class CategoryList extends Component {
     if (nextProps.activeCategoryId !== this.props.activeCategoryId) {
       this.setState({ activeCategoryId: nextProps.activeCategoryId })
     }
+
+    // TODO: add better comparison
+    if (nextProps.categories.length !== this.props.categories.length) {
+      this.setState({ categories: nextProps.categories })
+    }
   }
 
   render() {
@@ -22,7 +27,7 @@ class CategoryList extends Component {
 
       return (
         <li
-          class={isActive ? 'active' : ''}
+          className={isActive ? 'active' : ''}
           alt={isActive ? 'Active Category' : ''}
           key={category.id}
           onClick={() => this.props.changeCategory(category.id)}
@@ -36,7 +41,11 @@ class CategoryList extends Component {
       <nav className="category-list list-container">
         <ul>
           { categories }
-          <li class='add-button' key='addCategory'>
+          <li 
+            className='add-button'
+            key='addCategory'
+            onClick={() => this.props.addCategory()}
+          >
             <FontAwesomeIcon icon={['far', 'plus-square']} />
           </li>
         </ul>

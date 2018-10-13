@@ -16,6 +16,9 @@ class Card extends Component {
 
   render() {
     const card = this.state.card
+    if (!card) {
+      return null
+    }
 
     return (
       <section className="card-container">
