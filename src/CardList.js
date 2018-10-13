@@ -6,7 +6,8 @@ class CardList extends Component {
     super(props)
     this.state = {
       cards: props.cards,
-      activeCardId: props.activeCardId
+      activeCardId: props.activeCardId,
+      activeCategoryId: props.activeCategoryId
     }
   }
 
@@ -31,6 +32,10 @@ class CardList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.activeCategoryId !== this.props.activeCategoryId) {
+      this.setState({ activeCategoryId: nextProps.activeCategoryId})
+    }
+
     if (nextProps.cards !== this.props.cards) {
       this.clearTimeout()
       this.setState({ show: false })
@@ -66,7 +71,11 @@ class CardList extends Component {
       <nav className={className}>
         <ul>
           { cards }
-          <li className='add-button' key='addCard'>
+          <li 
+            className='add-button'
+            key='addCard'
+            onClick={() => this.props.addCard(this.state.activeCategoryId)}
+          >
             <FontAwesomeIcon icon={['far', 'plus-square']} />
           </li>
         </ul>

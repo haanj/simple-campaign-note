@@ -25,9 +25,11 @@ class App extends Component {
     this._handleChangeCategory = this._onChangeCategory.bind(this)
     this._handleChangeCard = this._onChangeCard.bind(this)
     this._handleAddCategory = this._onAddCategory.bind(this)
+    this._handleAddCard = this._onAddCard.bind(this);
   }
 
   // TODO: Hacky and Won't be needed with backend
+  // TODO: doesn't actually work with cards correctly - Need better resource management
   getNewModelId(list) {
     let currentMaxId = list.reduce((curr, next) => Math.max(curr, next.id), 0)
     return currentMaxId + 1
@@ -59,10 +61,30 @@ class App extends Component {
     this.setState({categories})
   }
 
-  _onChangeCard(id) {
-    const activeCard = this.state.activeCategory.cards.find(card => {
-      return card.id === id
+  _onAddCard(categoryId, cardInfo) {
+    const categories = this.state.categories.slice()
+    const category = categories.find(category => category.id === categoryId)
+    const cards = category.cards
+    const defaults = {
+      id: this.getNewModelId(cards),
+      name: `New ${category.name}`,
+      description: 'lorem ipsum',
+      text: 'Lorem ipsum blah blah blah'
+    };
+
+    const newCard = Object.assign({}, defaults, cardInfo)
+    cards.push(newCard)
+    this.setState({
+      categories,
+      activeCard: newCard
     })
+  }
+
+  _onChangeCard(id) {
+    const activeCard = this.state
+                           .activeCategory
+                           .cards
+                           .find(card => card.id === id)
 
     this.setState({ activeCard })
   }
@@ -78,8 +100,10 @@ class App extends Component {
         />
         <CardList
           cards={this.state.activeCategory.cards}
+          activeCategoryId={this.state.activeCategory.id}
           activeCardId={this.state.activeCard && this.state.activeCard.id}
           changeCard={this._handleChangeCard}
+          addCard={this._handleAddCard}
         />
         <Card card={this.state.activeCard} />
       </div>
