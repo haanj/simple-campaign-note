@@ -30,14 +30,25 @@ class CategoryList extends Component {
         </span>
       )
 
-      return (
-        <li
-          className={isActive ? 'active' : ''}
+      let className = 'category-name'
+      if (isActive) className += ' active'
+
+      const categoryName = (
+        <span
+          className={className}
           alt={isActive ? 'Active Category' : ''}
-          key={category.id}
           onClick={() => this.props.changeCategory(category.id)}
         >
           {category.name}
+        
+        </span>
+      )
+
+      return (
+        <li
+          key={category.id}
+        >
+          {categoryName}
           {editIcon}
         </li>
       )
