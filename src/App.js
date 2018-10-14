@@ -22,10 +22,10 @@ class App extends Component {
       activeCategory: cards[0],
       activeCard: cards[0].cards[0]
     }
-    this._handleChangeCategory = this._onChangeCategory.bind(this)
-    this._handleChangeCard = this._onChangeCard.bind(this)
-    this._handleAddCategory = this._onAddCategory.bind(this)
-    this._handleAddCard = this._onAddCard.bind(this);
+    this.handleChangeCategory = this._onChangeCategory.bind(this)
+    this.handleChangeCard = this._onChangeCard.bind(this)
+    this.handleAddCategory = this._onAddCategory.bind(this)
+    this.handleAddCard = this._onAddCard.bind(this);
   }
 
   // TODO: Hacky and Won't be needed with backend
@@ -95,15 +95,15 @@ class App extends Component {
         <CategoryList
           categories={this.state.categories}
           activeCategoryId={this.state.activeCategory.id}
-          changeCategory={this._handleChangeCategory}
-          addCategory={this._handleAddCategory}
+          changeCategory={this.handleChangeCategory}
+          addCategory={this.handleAddCategory}
         />
         <CardList
           cards={this.state.activeCategory.cards}
           activeCategoryId={this.state.activeCategory.id}
           activeCardId={this.state.activeCard && this.state.activeCard.id}
-          changeCard={this._handleChangeCard}
-          addCard={this._handleAddCard}
+          changeCard={this.handleChangeCard}
+          addCard={this.handleAddCard}
         />
         <Card card={this.state.activeCard} />
       </div>
