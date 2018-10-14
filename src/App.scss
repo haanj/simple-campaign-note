@@ -105,9 +105,15 @@
   border: 2px solid $font-color-primary;
   border-radius: $border-radius;
   width: 800px;
-  padding: 2rem;
+  padding: 2rem 1rem 2rem 2rem;
 
   box-shadow: $box-shadow;
+
+  header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 
   label {
     padding: 1rem 1rem 0 1rem;
@@ -132,10 +138,15 @@
     // border: 2px solid $gray-medium;
     border-radius: $border-radius;
     box-shadow: 0 0 10px $gray-dark;
+    &:focus {
+      outline-color: $gray-dark;
+    }
   }
 }
 
 .cancel-confirm {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
   cursor: pointer;
   white-space: nowrap;
   display: inline-block;
@@ -143,6 +154,10 @@
 
   opacity: 0;
   transition: opacity $transition-slow;
+
+  .button {
+    margin-left: 0.5rem;
+  }
 
   svg:hover {
     transition: $transition-button;

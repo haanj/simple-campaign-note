@@ -22,14 +22,14 @@ export class CancelConfirmButton extends Component {
     return (
       <span className={className}>
         <span
-          className='cancel-button'
+          className='cancel-button button'
           onClick={() => this.props.clickCancel()}
         >
           <FontAwesomeIcon icon={['far', 'times-circle']} />
         </span>
 
         <span
-          className='confirm-button'
+          className='confirm-button button'
           onClick={() => this.props.clickConfirm()}
         >
           <FontAwesomeIcon icon={['far', 'check-circle']} />

@@ -6,9 +6,12 @@ class Card extends Component {
     super(props)
     this.state = {
       card: props.card,
-      isNameFocused: false
+      isNameFocused: false,
+      nameKey: Math.random() // can force rerender after user updates content
     }
+    this.nameInput = React.createRef();
     this.handleChangeNameFocus = this._onChangeNameFocus.bind(this)
+    this.handleClickCancel = this._onClickCancel.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -19,8 +22,19 @@ class Card extends Component {
 
   _onChangeNameFocus(isNameFocused) {
     this.setState({ isNameFocused })
+
+    if (isNameFocused) {
+      // workaround to auto-focus to newly-contentEditable element
+      setTimeout(() => {
+        this.nameInput.current.focus()
+      },0)
+    }
   }
-  
+
+  _onClickCancel() {
+    this.setState({ nameKey: Math.random() })
+    this.handleChangeNameFocus(false)
+  }
 
   render() {
     const card = this.state.card
@@ -35,14 +49,18 @@ class Card extends Component {
       <article className="card-container">
         <header>
           <h1
+            ref={this.nameInput}
+            key={this.state.nameKey}
             className={cardNameClass}
             onClick={() => this.handleChangeNameFocus(true)}
+            contentEditable={this.state.isNameFocused}
+            autoFocus={this.stateisNameFocused}
           >
             {card.name}
           </h1>
           <CancelConfirmButton
             show={this.state.isNameFocused}
-            clickCancel={() => this.handleChangeNameFocus(false)}
+            clickCancel={() => this.handleClickCancel()}
           />
         </header>
 

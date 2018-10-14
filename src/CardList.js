@@ -49,6 +49,7 @@ class CardList extends Component {
     }
   }
 
+  // TODO: refactor some of this into functional components
   render() {
     const cards = this.state.cards.map(card => {
       const isActive = card.id === this.state.activeCardId
