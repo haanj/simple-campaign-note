@@ -18,7 +18,7 @@
     .edit-button {
       width: 0;
       overflow: hidden;
-      transition: 150ms;
+      transition: $transition-button;
       position: absolute;
       right: 2rem;
       padding-top: 5px;
@@ -31,7 +31,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       display: inline-block;
-      transition: 100ms;
+      transition: $transition-fast;
       &.active {
         font-weight: 600;
       }
@@ -44,14 +44,14 @@
       .edit-button{
         width: 1.6rem;
         &:hover {
-          transform: scale(1.1);
+          transform: $transform-button;
         }
       }
     }
 
     &.add-button:hover {
-      transition: 150ms;
-      transform: scale(1.3);
+      transition: $transition-button;
+      transform: $transform-button;
     }
   }
 
@@ -67,7 +67,7 @@
 
   &.card-list {
     z-index: 1;
-    transition: 300ms;
+    transition: $transition-regular;
     border-left: none;
 
     left: -18rem;
@@ -129,8 +129,8 @@
   cursor: pointer;
 
   svg:hover {
-    transition: 200ms;
-    transform: scale(1.3);
+    transition: $transition-button;
+    transform: $transform-button;
   }
 
   &.show {
