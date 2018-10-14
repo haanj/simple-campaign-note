@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CancelConfirmButton } from './CancelConfirmButton'
 
 class Card extends Component {
   constructor(props) {
@@ -21,15 +22,22 @@ class Card extends Component {
     }
 
     return (
-      <section className="card-container">
-        <h1 className="card-name">{card.name}</h1>
+      <article className="card-container">
+        <header>
+          <h1 className="card-name">{card.name}</h1>
+          <CancelConfirmButton show={true} />
+        </header>
 
-        <label htmlFor="card-description">Summary</label>
-        <div className="card-description">{card.description}</div>
+        <section>
+          <label htmlFor="card-description">Summary</label>
+          <div className="card-description">{card.description}</div>
+        </section>
 
-        <label htmlFor="card-text">Notes</label>
-        <div className="card-text">{card.text}</div>
-      </section>
+        <main>
+          <label htmlFor="card-text">Notes</label>
+          <div className="card-text">{card.text}</div>
+        </main>
+      </article>
     )
   }
 }
