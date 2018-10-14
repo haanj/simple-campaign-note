@@ -5,8 +5,10 @@ class Card extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      card: props.card
+      card: props.card,
+      isNameFocused: false
     }
+    this.handleChangeNameFocus = this._onChangeNameFocus.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -15,17 +17,33 @@ class Card extends Component {
     }
   }
 
+  _onChangeNameFocus(isNameFocused) {
+    this.setState({ isNameFocused })
+  }
+  
+
   render() {
     const card = this.state.card
     if (!card) {
       return null
     }
 
+    let cardNameClass = 'card-name'
+    if (this.state.isNameFocused) cardNameClass += ' focus'
+
     return (
       <article className="card-container">
         <header>
-          <h1 className="card-name">{card.name}</h1>
-          <CancelConfirmButton show={true} />
+          <h1
+            className={cardNameClass}
+            onClick={() => this.handleChangeNameFocus(true)}
+          >
+            {card.name}
+          </h1>
+          <CancelConfirmButton
+            show={this.state.isNameFocused}
+            clickCancel={() => this.handleChangeNameFocus(false)}
+          />
         </header>
 
         <section>

@@ -67,7 +67,7 @@
 
   &.card-list {
     z-index: 1;
-    transition: $transition-regular;
+    transition: $transition-regular ease-out;
     border-left: none;
 
     left: -18rem;
@@ -121,21 +121,28 @@
     cursor: text;
     font-size: 2.5rem;
     align-self: center;
+    transition: $transition-slow;
+
+    &:not(.focus):hover {
+      box-shadow: 0 0 10px $gray-medium;
+    }
   }
 
   .focus {
-    border: 2px solid $gray-medium;
+    // border: 2px solid $gray-medium;
     border-radius: $border-radius;
     box-shadow: 0 0 10px $gray-dark;
   }
 }
 
 .cancel-confirm {
-  display: inline-block;
-  width: 0;
-  overflow: hidden;
-  white-space: nowrap;
   cursor: pointer;
+  white-space: nowrap;
+  display: inline-block;
+  visibility: hidden;
+
+  opacity: 0;
+  transition: opacity $transition-slow;
 
   svg:hover {
     transition: $transition-button;
@@ -143,6 +150,8 @@
   }
 
   &.show {
-    width: 3rem;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity $transition-slow;
   }
 }

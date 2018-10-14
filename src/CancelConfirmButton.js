@@ -9,6 +9,12 @@ export class CancelConfirmButton extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.show !== this.props.show) {
+      this.setState({ show: nextProps.show })
+    }
+  }
+
   render() {
     let className = 'cancel-confirm'
     if (this.state.show) className += ' show'
