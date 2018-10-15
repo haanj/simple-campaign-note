@@ -26,6 +26,7 @@ class App extends Component {
     this.handleChangeCard = this._onChangeCard.bind(this)
     this.handleAddCategory = this._onAddCategory.bind(this)
     this.handleAddCard = this._onAddCard.bind(this);
+    this.handleUpdateCard = this._onUpdateCard.bind(this);
   }
 
   // TODO: Hacky and Won't be needed with backend
@@ -80,6 +81,31 @@ class App extends Component {
     })
   }
 
+  // NOTE: this is pretty convoluted, and it's definitely time to priotize
+  // adding data access layer instead of loading all this json into
+  // component state. I'm just continuing with this for one more feature to see
+  // what the UX would be like for updating the title of a card
+  _onUpdateCard(cardId, newValues) {
+    const cards = this.state.activeCategory.cards.slice()
+    const categories = this.state.categories.slice()
+    const activeCategoryId = this.state.activeCategory.id
+    const card = cards.find(card => card.id === cardId)
+    const newCard = Object.assign(card, newValues)
+
+    // a bit of juggling to avoid mutating original state objects
+    const categoryIndex = categories.findIndex(category => category.id === activeCategoryId)
+    const activeCategory = categories[categoryIndex]
+    activeCategory.cards = cards
+
+    const cardIndex = cards.findIndex(card => card.id === cardId)
+    activeCategory.cards[cardIndex] = newCard
+
+    this.setState({
+      categories,
+      activeCategory
+    })
+  }
+
   _onChangeCard(id) {
     const activeCard = this.state
                            .activeCategory
@@ -105,7 +131,10 @@ class App extends Component {
           changeCard={this.handleChangeCard}
           addCard={this.handleAddCard}
         />
-        <Card card={this.state.activeCard} />
+        <Card
+          card={this.state.activeCard}
+          updateCard={this.handleUpdateCard}
+        />
       </div>
     )
   }

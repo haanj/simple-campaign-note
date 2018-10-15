@@ -12,6 +12,7 @@ class Card extends Component {
     this.nameInput = React.createRef();
     this.handleChangeNameFocus = this._onChangeNameFocus.bind(this)
     this.handleClickCancel = this._onClickCancel.bind(this)
+    this.handleClickConfirm = this._onClickConfirm.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,6 +35,12 @@ class Card extends Component {
   _onClickCancel() {
     this.setState({ nameKey: Math.random() })
     this.handleChangeNameFocus(false)
+  }
+
+  _onClickConfirm() {
+    this.handleChangeNameFocus(false)
+    const name = this.nameInput.current.innerText
+    this.props.updateCard(this.state.card.id, { name })
   }
 
   render() {
@@ -61,6 +68,7 @@ class Card extends Component {
           <CancelConfirmButton
             show={this.state.isNameFocused}
             clickCancel={() => this.handleClickCancel()}
+            clickConfirm={() => this.handleClickConfirm()}
           />
         </header>
 
