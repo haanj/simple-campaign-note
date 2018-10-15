@@ -39,7 +39,7 @@ class Card extends Component {
 
   _onClickConfirm() {
     this.handleChangeNameFocus(false)
-    const name = this.nameInput.current.innerText
+    const name = this.nameInput.current.innerText || 'Untitled'
     this.props.updateCard(this.state.card.id, { name })
   }
 
