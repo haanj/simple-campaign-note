@@ -19,8 +19,8 @@ class App extends Component {
     super(props)
     this.state = { 
       categories: cards,
-      activeCategory: cards[0],
-      activeCard: cards[0].cards[0]
+      activeCategoryId: cards[0].id,
+      activeCardId: cards[0].cards[0].id,
     }
     this.handleChangeCategory = this._onChangeCategory.bind(this)
     this.handleChangeCard = this._onChangeCard.bind(this)
@@ -41,9 +41,11 @@ class App extends Component {
       return category.id === id
     })
 
+    const activeCard = activeCategory.cards[0] || {};
+
     this.setState({
-      activeCategory,
-      activeCard: activeCategory.cards[0]
+      activeCategoryId: id,
+      activeCardId: activeCard.id
     })
   }
 
@@ -77,7 +79,7 @@ class App extends Component {
     cards.push(newCard)
     this.setState({
       categories,
-      activeCard: newCard
+      activeCardId: newCard.id
     })
   }
 
@@ -86,33 +88,42 @@ class App extends Component {
   // component state. I'm just continuing with this for one more feature to see
   // what the UX would be like for updating the title of a card
   _onUpdateCard(cardId, newValues) {
-    const cards = this.state.activeCategory.cards.slice()
-    const categories = this.state.categories.slice()
-    const activeCategoryId = this.state.activeCategory.id
-    const card = cards.find(card => card.id === cardId)
-    const newCard = Object.assign(card, newValues)
+    const activeCategoryId = this.state.activeCategoryId
 
     // a bit of juggling to avoid mutating original state objects
-    const categoryIndex = categories.findIndex(category => category.id === activeCategoryId)
-    const activeCategory = categories[categoryIndex]
-    activeCategory.cards = cards
+    const categories = this.state.categories.slice()
 
-    const cardIndex = cards.findIndex(card => card.id === cardId)
-    activeCategory.cards[cardIndex] = newCard
+    // find index to replace element later
+    const categoryIndex = categories.findIndex(category => category.id === activeCategoryId)
+    const categoryToUpdate = categories[categoryIndex]
+
+    const cardIndex = categoryToUpdate.cards.findIndex(card => card.id === cardId)
+    const cardToUpdate = categoryToUpdate.cards[cardIndex]
+
+    const newCard = Object.assign(cardToUpdate, newValues)
+    categoryToUpdate.cards[cardIndex] = newCard
 
     this.setState({
       categories,
-      activeCategory
     })
   }
 
-  _onChangeCard(id) {
-    const activeCard = this.state
-                           .activeCategory
-                           .cards
-                           .find(card => card.id === id)
+  getActiveCard() {
+    const activeCardId = this.state.activeCardId
+    return this.getActiveCards().find(card => card.id === activeCardId)
+  }
 
-    this.setState({ activeCard })
+  getActiveCards() {
+    const categories = this.state.categories.slice()
+    const activeCategoryId = this.state.activeCategoryId
+    const activeCategory = categories
+                            .find(category => category.id === activeCategoryId)
+    
+    return activeCategory.cards
+  }
+
+  _onChangeCard(id) {
+    this.setState({ activeCardId: id })
   }
 
   render() {
@@ -120,19 +131,19 @@ class App extends Component {
       <div className="App">
         <CategoryList
           categories={this.state.categories}
-          activeCategoryId={this.state.activeCategory.id}
+          activeCategoryId={this.state.activeCategoryId}
           handleChangeCategory={this.handleChangeCategory}
           handleAddCategory={this.handleAddCategory}
         />
         <CardList
-          cards={this.state.activeCategory.cards}
-          activeCategoryId={this.state.activeCategory.id}
-          activeCardId={this.state.activeCard && this.state.activeCard.id}
+          cards={this.getActiveCards()} // TODO: I don't think this works right
+          activeCategoryId={this.state.activeCategoryId}
+          activeCardId={this.state.activeCardId}
           handleChangeCard={this.handleChangeCard}
           handleAddCard={this.handleAddCard}
         />
         <Card
-          card={this.state.activeCard}
+          card={this.getActiveCard()} // TODO: make more better
           handleUpdateCard={this.handleUpdateCard}
         />
       </div>

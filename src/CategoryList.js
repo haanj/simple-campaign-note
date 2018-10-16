@@ -16,7 +16,7 @@ class CategoryList extends Component {
     }
 
     // TODO: add better comparison
-    if (nextProps.categories.length !== this.props.categories.length) {
+    if (nextProps.categories !== this.props.categories) {
       this.setState({ categories: nextProps.categories })
     }
   }
