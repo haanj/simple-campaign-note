@@ -121,19 +121,19 @@ class App extends Component {
         <CategoryList
           categories={this.state.categories}
           activeCategoryId={this.state.activeCategory.id}
-          changeCategory={this.handleChangeCategory}
-          addCategory={this.handleAddCategory}
+          handleChangeCategory={this.handleChangeCategory}
+          handleAddCategory={this.handleAddCategory}
         />
         <CardList
           cards={this.state.activeCategory.cards}
           activeCategoryId={this.state.activeCategory.id}
           activeCardId={this.state.activeCard && this.state.activeCard.id}
-          changeCard={this.handleChangeCard}
-          addCard={this.handleAddCard}
+          handleChangeCard={this.handleChangeCard}
+          handleAddCard={this.handleAddCard}
         />
         <Card
           card={this.state.activeCard}
-          updateCard={this.handleUpdateCard}
+          handleUpdateCard={this.handleUpdateCard}
         />
       </div>
     )

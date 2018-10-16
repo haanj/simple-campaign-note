@@ -67,7 +67,7 @@ class CardList extends Component {
         <span
           className={className}
           alt={isActive ? 'Active Card' : ''}
-          onClick={() => this.props.changeCard(card.id)}
+          onClick={() => this.props.handleChangeCard(card.id)}
         >
           {card.name}
         </span>
@@ -93,7 +93,7 @@ class CardList extends Component {
           <li 
             className='add-button'
             key='addCard'
-            onClick={() => this.props.addCard(this.state.activeCategoryId)}
+            onClick={() => this.props.handleAddCard(this.state.activeCategoryId)}
           >
             <FontAwesomeIcon icon={['far', 'plus-square']} />
           </li>

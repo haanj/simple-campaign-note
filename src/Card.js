@@ -40,7 +40,7 @@ class Card extends Component {
   _onClickConfirm() {
     this.handleChangeNameFocus(false)
     const name = this.nameInput.current.innerText || 'Untitled'
-    this.props.updateCard(this.state.card.id, { name })
+    this.props.handleUpdateCard(this.state.card.id, { name })
   }
 
   render() {
@@ -67,8 +67,8 @@ class Card extends Component {
           </h1>
           <CancelConfirmButton
             show={this.state.isNameFocused}
-            clickCancel={() => this.handleClickCancel()}
-            clickConfirm={() => this.handleClickConfirm()}
+            handleClickCancel={() => this.handleClickCancel()}
+            handleClickConfirm={() => this.handleClickConfirm()}
           />
         </header>
 

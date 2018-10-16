@@ -37,7 +37,7 @@ class CategoryList extends Component {
         <span
           className={className}
           alt={isActive ? 'Active Category' : ''}
-          onClick={() => this.props.changeCategory(category.id)}
+          onClick={() => this.props.handleChangeCategory(category.id)}
         >
           {category.name}
         </span>
@@ -60,7 +60,7 @@ class CategoryList extends Component {
           <li 
             className='add-button'
             key='addCategory'
-            onClick={() => this.props.addCategory()}
+            onClick={() => this.props.handleAddCategory()}
           >
             <FontAwesomeIcon icon={['far', 'plus-square']} />
           </li>
