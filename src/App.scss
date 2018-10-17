@@ -68,14 +68,14 @@
   &.card-list {
     z-index: 1;
     transition: $transition-regular ease-out;
-    border-left: none;
 
     left: -18rem;
     width: 15rem;;
 
     top: 1rem;
-    border-bottom-right-radius: $border-radius;
     border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
     
     &.show {
       left: 0;
