@@ -1,6 +1,6 @@
 /**
  * Base Model for collections
- * - Roughly based off Rails concept of data models
+ * - Roughly based off Rails activerecords
  */
 export class Model {
   constructor(props = {}) {
@@ -9,7 +9,8 @@ export class Model {
 
     this.length = this._onGetLength.bind(this)
     this.all = this._onGetAll.bind(this)
-    this.find = this._onFind.bind(this)
+    this.findById = this._onFindById.bind(this)
+    this.findWhere = this._onFindWhere.bind(this)
     this.add = this._onAdd.bind(this)
     this.update = this._onUpdate.bind(this)
   }
@@ -35,9 +36,23 @@ export class Model {
    * takes an ID and returns the first model that matches
    * TODO: refine and allow search by params
    */
-  _onFind(id) {
+  _onFindById(id) {
     const model = this.collection.find(model => model.id === id)
     return model ? this._copy(model) : undefined
+  }
+
+  /**
+   * Returns a filtered collection by a search query
+   */
+  _onFindWhere(query = {}) {
+    let collection = this.all(this.collection)
+    const params = Object.keys(query)
+    params.forEach(param => {
+      const value = query[param]
+      collection = collection.filter(item => item[param] === value)
+    })
+
+    return collection
   }
 
   /**
@@ -46,9 +61,9 @@ export class Model {
    */
   _onAdd(attrs = {}) {
     const newAttrs = [
-      attrs,
       this.defaults,
-      { id: this._getNewId() }
+      { id: this._getNewId() },
+      attrs,
     ]
 
     const newModel = Object.assign(...newAttrs)

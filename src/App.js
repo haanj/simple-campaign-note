@@ -17,7 +17,7 @@ class App extends Component {
 
     const categories = Category.all()
     const activeCategoryId = categories[0].id
-    const cards = Card.all().filter(card => card.categoryId === activeCategoryId)
+    const cards = Card.findWhere({ categoryId: activeCategoryId })
     const activeCardId = cards[0].id
     
     this.state = { 
@@ -30,12 +30,12 @@ class App extends Component {
     this.handleChangeCategory = this._onChangeCategory.bind(this)
     this.handleChangeCard = this._onChangeCard.bind(this)
     this.handleAddCategory = this._onAddCategory.bind(this)
-    this.handleAddCard = this._onAddCard.bind(this);
-    this.handleUpdateCard = this._onUpdateCard.bind(this);
+    this.handleAddCard = this._onAddCard.bind(this)
+    this.handleUpdateCard = this._onUpdateCard.bind(this)
   }
 
   _onChangeCategory(id) {
-    const cards = Card.all().filter(card => card.categoryId === id)
+    const cards = Card.findWhere({ categoryId: id })
     const activeCard = cards[0] || {}
 
     this.setState({
@@ -72,12 +72,12 @@ class App extends Component {
 
   getActiveCard() {
     const activeCardId = this.state.activeCardId
-    return Card.find(activeCardId)
+    return Card.findById(activeCardId)
   }
 
   getActiveCards() {
     const activeCategoryId = this.state.activeCategoryId
-    return Card.all().filter(card => card.categoryId === activeCategoryId)
+    return Card.findWhere({ categoryId: activeCategoryId })
   }
 
   _onChangeCard(id) {
