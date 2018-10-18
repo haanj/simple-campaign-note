@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CancelConfirmButton } from './CancelConfirmButton'
 
-class Card extends Component {
+export default class CardEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -85,5 +85,3 @@ class Card extends Component {
     )
   }
 }
-
-export default Card

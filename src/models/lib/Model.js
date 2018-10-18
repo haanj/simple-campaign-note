@@ -4,8 +4,6 @@
  */
 export class Model {
   constructor(props = {}) {
-    super(props)
-
     this._initializeCollection(props.collection)
     this.defaults = this._copy(props.defaults)
 
@@ -14,7 +12,6 @@ export class Model {
     this.find = this._onFind.bind(this)
     this.add = this._onAdd.bind(this)
     this.update = this._onUpdate.bind(this)
-    this.hasChanges = this._onGetHasChanges.bind(this)
   }
 
   _initializeCollection(collection = []) {
@@ -38,8 +35,8 @@ export class Model {
    * takes an ID and returns the first model that matches
    * TODO: refine and allow search by params
    */
-  _onFind(searchOptions) {
-    const model = this.collection.find(model => model.id === searchOptions)
+  _onFind(id) {
+    const model = this.collection.find(model => model.id === id)
     return model ? this._copy(model) : undefined
   }
 
@@ -70,7 +67,7 @@ export class Model {
     // going to create a new collection to track mutations
     // not entirely sure if this will be necessary.. but..
     const newCollection = this._copy(this.collection)
-    const model = newCollection.find(model => model.id === modelId)
+    let model = newCollection.find(model => model.id === modelId)
     if (!model) return
 
     model = Object.assign(model, attrs)
