@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import './App.scss'
 
 import { Category, Card } from './models'
-
-import CategoryList from './CategoryList'
-import CardList from './CardList'
-import CardEditor from './CardEditor'
+import { CategoryList, CardList, CardEditor } from './components'
 
 // TODO: reduce glut once I know which icons I need
 import { library } from '@fortawesome/fontawesome-svg-core'

@@ -36,7 +36,7 @@ class CardList extends Component {
       this.setState({ activeCategoryId: nextProps.activeCategoryId})
     }
 
-    if (nextProps.cards !== this.props.cards) {
+    if (JSON.stringify(nextProps.cards) !== JSON.stringify(this.props.cards)) {
       this.clearTimeout()
       this.setState({ show: false })
       this.setStateDelayed({
