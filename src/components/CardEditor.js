@@ -26,19 +26,41 @@ export default class CardEditor extends Component {
             <MicroEditor
               text={card.name}
               defaultText='Untitled'
-              handleClickConfirm={name => this.props.handleUpdateCard(card.id, { name })}
+              handleClickConfirm={name => {
+                this.props.handleUpdateCard(card.id, { name })
+              }}
             />
           </h1>
         </header>
-        
+
         <section>
-          <label htmlFor="card-description">Summary</label>
-          <div className="card-description">{card.description}</div>
+          <header class='card-section-header'>
+            Summary
+          </header>
+          <div className="card-description">
+            <MicroEditor
+              text={card.description}
+              defaultText='Insert a summary'
+              handleClickConfirm={description => {
+                this.props.handleUpdateCard(card.id, { description })
+              }}
+            />
+          </div>
         </section>
 
         <main>
-          <label htmlFor="card-text">Notes</label>
-          <div className="card-text">{card.text}</div>
+          <header class='card-section-header'>
+            Notes
+          </header>
+          <div className="card-text">
+            <MicroEditor
+              text={card.text}
+              defaultText='Insert notes here'
+              handleClickConfirm={text => {
+                this.props.handleUpdateCard(card.id, { text })
+              }}
+            />
+          </div>
         </main>
       </article>
     )

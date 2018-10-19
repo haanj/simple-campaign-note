@@ -115,9 +115,13 @@
     align-items: center;
   }
 
-  label {
+  .card-section-header {
+    display: block;
+    margin-left: 5%;
     padding: 1rem 1rem 0 1rem;
     font-style: italic;
+    text-align: left;
+    width: 100%;
   }
   
   .card-name {
@@ -135,6 +139,9 @@
     white-space: nowrap;
     .editor {
       cursor: text;
+      padding: 3px 8px;
+      white-space: normal;
+      overflow-wrap: break-word;
       display: inline-block;
       width: 85%;
       margin-left: 5%;
@@ -156,7 +163,7 @@
 
 .cancel-confirm {
   margin-left: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
   white-space: nowrap;
   display: inline-block;
