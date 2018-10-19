@@ -7,9 +7,8 @@ export default class CardEditor extends Component {
     this.state = {
       card: props.card,
       isNameFocused: false,
-      nameKey: Math.random() // can force rerender after user updates content
     }
-    this.nameInput = React.createRef();
+    this.nameInput = React.createRef()
     this.handleChangeNameFocus = this._onChangeNameFocus.bind(this)
     this.handleClickCancel = this._onClickCancel.bind(this)
     this.handleClickConfirm = this._onClickConfirm.bind(this)
@@ -33,7 +32,7 @@ export default class CardEditor extends Component {
   }
 
   _onClickCancel() {
-    this.setState({ nameKey: Math.random() })
+    this.nameInput.current.innerText = this.state.card.name
     this.handleChangeNameFocus(false)
   }
 
@@ -57,11 +56,9 @@ export default class CardEditor extends Component {
         <header>
           <h1
             ref={this.nameInput}
-            key={this.state.nameKey}
             className={cardNameClass}
             onClick={() => this.handleChangeNameFocus(true)}
             contentEditable={this.state.isNameFocused}
-            autoFocus={this.stateisNameFocused}
           >
             {card.name}
           </h1>
