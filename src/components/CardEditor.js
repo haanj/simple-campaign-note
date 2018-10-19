@@ -22,7 +22,7 @@ export default class CardEditor extends Component {
     return (
       <article className="card-container">
         <header>
-          <h1>
+          <h1 className='card-name'>
             <MicroEditor
               text={card.name}
               defaultText='Untitled'
@@ -30,7 +30,7 @@ export default class CardEditor extends Component {
             />
           </h1>
         </header>
-
+        
         <section>
           <label htmlFor="card-description">Summary</label>
           <div className="card-description">{card.description}</div>

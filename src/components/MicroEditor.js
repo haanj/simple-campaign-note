@@ -45,11 +45,11 @@ export default class MicroEditor extends Component {
 
   render() {
     const text = this.state.text || this.props.defaultText
-    let inputClass = 'card-name'
-    if (this.stateisActive) inputClass += ' focus'
+    let inputClass = 'editor'
+    if (this.state.isActive) inputClass += ' focus'
 
     return (
-      <span>
+      <span className='editor-container'>
         <span
           ref={this.input}
           className={inputClass}
