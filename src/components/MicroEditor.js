@@ -33,13 +33,13 @@ export default class MicroEditor extends Component {
   }
 
   _onClickCancel() {
-    this.input.current.innerText = this.text
+    this.input.current.innerText = this.state.text
     this.handleChangeActive(false)
   }
 
   _onClickConfirm() {
     this.handleChangeActive(false)
-    const newText = this.nameInput.current.innerText || this.props.defaultText
+    const newText = this.input.current.innerText || this.props.defaultText
     this.props.handleClickConfirm(newText)
   }
 
