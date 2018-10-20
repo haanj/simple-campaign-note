@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CategoryItem from './CategoryItem'
+import CategoryListItem from './CategoryListItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class CategoryList extends Component {
@@ -25,7 +25,7 @@ class CategoryList extends Component {
   render() {
     const categories = this.state.categories.map(category => {
       return (
-        <CategoryItem 
+        <CategoryListItem 
           category={category}
           isActive={category.id === this.state.activeCategoryId}
           handleChangeCategory={this.props.handleChangeCategory}

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MicroEditor from './MicroEditor'
 
-export default class CategoryList extends Component {
+export default class CategoryListItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
