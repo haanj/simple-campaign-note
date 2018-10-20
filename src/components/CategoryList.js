@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CategoryItem from './CategoryItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class CategoryList extends Component {
@@ -23,33 +24,12 @@ class CategoryList extends Component {
 
   render() {
     const categories = this.state.categories.map(category => {
-      const isActive = category.id === this.state.activeCategoryId
-      const editIcon = (
-        <span className='edit-button'>
-          <FontAwesomeIcon icon={['far', 'edit']} />
-        </span>
-      )
-
-      let className = 'name'
-      if (isActive) className += ' active'
-
-      const categoryName = (
-        <span
-          className={className}
-          alt={isActive ? 'Active Category' : ''}
-          onClick={() => this.props.handleChangeCategory(category.id)}
-        >
-          {category.name}
-        </span>
-      )
-
       return (
-        <li
-          key={category.id}
-        >
-          {categoryName}
-          {editIcon}
-        </li>
+        <CategoryItem 
+          category={category}
+          isActive={category.id === this.state.activeCategoryId}
+          handleChangeCategory={this.props.handleChangeCategory}
+        />
       )
     })
 
