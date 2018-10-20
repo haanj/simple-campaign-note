@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import CardListItem from './CardListItem'
 
 class CardList extends Component {
   constructor(props) {
@@ -52,33 +53,15 @@ class CardList extends Component {
   // TODO: refactor some of this into functional components
   render() {
     const cards = this.state.cards.map(card => {
-      const isActive = card.id === this.state.activeCardId
-
-      const editIcon = (
-        <span className='edit-button'>
-          <FontAwesomeIcon icon={['far', 'edit']} />
-        </span>
-      )
-
-      let className = 'name'
-      if (isActive) className += ' active'
-
-      const cardName = (
-        <span
-          className={className}
-          alt={isActive ? 'Active Card' : ''}
-          onClick={() => this.props.handleChangeCard(card.id)}
-        >
-          {card.name}
-        </span>
-      )
-
       return (
         <li
           key={card.id}
         >
-          {cardName}
-          {editIcon}
+          <CardListItem
+            isActive={card.id === this.state.activeCardId}
+            handleChangeCard={this.props.handleChangeCard}
+            card={card}
+          />
         </li>
       )
     })
