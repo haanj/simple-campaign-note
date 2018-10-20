@@ -29,6 +29,7 @@ class CategoryList extends Component {
           category={category}
           isActive={category.id === this.state.activeCategoryId}
           handleChangeCategory={this.props.handleChangeCategory}
+          handleUpdateCategory={this.props.handleUpdateCategory}
         />
       )
     })

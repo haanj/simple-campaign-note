@@ -6,10 +6,9 @@ export default class MicroEditor extends Component {
     super(props)
     this.state = {
       text: props.text,
-      isActive: false,
+      isActive: props.isActive || false,
     }
     this.input = React.createRef()
-
     this.handleChangeActive = this._onChangeActive.bind(this)
     this.handleClickCancel = this._onClickCancel.bind(this)
     this.handleClickConfirm = this._onClickConfirm.bind(this)
@@ -21,20 +20,26 @@ export default class MicroEditor extends Component {
     }
   }
 
+  componentDidMount() {
+    if (this.state.isActive) this.focus()
+  }
+
   _onChangeActive(isActive) {
     this.setState({ isActive })
+    if (isActive) this.focus()
+  }
 
-    if (isActive) {
-      // workaround to auto-focus to newly-contentEditable element
-      setTimeout(() => {
-        this.input.current.focus()
-      },0)
-    }
+  focus() {
+    // workaround to auto-focus to newly-contentEditable element
+    setTimeout(() => {
+      this.input.current.focus()
+    },0)
   }
 
   _onClickCancel() {
     this.input.current.innerText = this.state.text
     this.handleChangeActive(false)
+    if (this.props.handleClickCancel) this.props.handleClickCancel()
   }
 
   _onClickConfirm() {

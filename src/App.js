@@ -27,9 +27,10 @@ class App extends Component {
       activeCardId,
     }
 
-    this.handleChangeCategory = this._onChangeCategory.bind(this)
-    this.handleChangeCard = this._onChangeCard.bind(this)
     this.handleAddCategory = this._onAddCategory.bind(this)
+    this.handleChangeCategory = this._onChangeCategory.bind(this)
+    this.handleUpdateCategory = this._onUpdateCategory.bind(this)
+    this.handleChangeCard = this._onChangeCard.bind(this)
     this.handleAddCard = this._onAddCard.bind(this)
     this.handleUpdateCard = this._onUpdateCard.bind(this)
   }
@@ -49,6 +50,14 @@ class App extends Component {
     this.setState({
       categories: Category.all(),
       activeCategoryId: newCategory.id
+    })
+  }
+
+  _onUpdateCategory(categoryId, newValues = {}) {
+    const newParams = Object.assign({ id: categoryId }, newValues)
+    Category.update(newParams)
+    this.setState({
+      categories: Category.all()
     })
   }
 
@@ -92,6 +101,7 @@ class App extends Component {
           activeCategoryId={this.state.activeCategoryId}
           handleChangeCategory={this.handleChangeCategory}
           handleAddCategory={this.handleAddCategory}
+          handleUpdateCategory={this.handleUpdateCategory}
         />
         <CardList
           cards={this.getActiveCards()} // TODO: I don't think this works right
