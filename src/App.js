@@ -2,7 +2,7 @@ import React from 'react'
 import './App.scss'
 
 import { Switch, Route } from 'react-router-dom'
-import { Main, Login } from './components'
+import { Main, Login } from './components/pages'
 
 // TODO: reduce glut once I know which icons I need
 import { library } from '@fortawesome/fontawesome-svg-core'
