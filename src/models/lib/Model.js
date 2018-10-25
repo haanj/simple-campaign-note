@@ -5,7 +5,7 @@
 export class Model {
   constructor(props = {}) {
     this._initializeCollection(props.collection)
-    this.defaults = this._copy(props.defaults)
+    this.defaults = Object.freeze(props.defaults)
 
     this.length = this._onGetLength.bind(this)
     this.all = this._onGetAll.bind(this)
