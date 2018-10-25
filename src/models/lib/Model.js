@@ -61,6 +61,7 @@ export class Model {
    */
   _onAdd(attrs = {}) {
     const newAttrs = [
+      {},
       this.defaults,
       { id: this._getNewId() },
       attrs,
