@@ -56,8 +56,8 @@ export default class CardEditor extends Component {
             <MicroEditor
               text={card.content}
               defaultText='Insert notes here'
-              handleClickConfirm={text => {
-                this.props.handleUpdateCard(card.id, { text })
+              handleClickConfirm={content => {
+                this.props.handleUpdateCard(card.id, { content })
               }}
             />
           </div>

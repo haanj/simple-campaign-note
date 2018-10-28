@@ -52,25 +52,25 @@ class App extends Component {
     })
   }
 
-  _onAddCategory(categoryInfo) {
-    const newCategory = Category.add(categoryInfo)
+  async _onAddCategory(categoryInfo) {
+    const newCategory = await Category.add(categoryInfo)
     this.setState({
       categories: Category.all(),
       activeCategoryId: newCategory.id
     })
   }
 
-  _onUpdateCategory(categoryId, newValues = {}) {
+  async _onUpdateCategory(categoryId, newValues = {}) {
     const newParams = Object.assign({ id: categoryId }, newValues)
-    Category.update(newParams)
+    await Category.update(newParams)
     this.setState({
       categories: Category.all()
     })
   }
 
-  _onAddCard(categoryId, cardInfo) {
+  async _onAddCard(categoryId, cardInfo) {
     const newParams = Object.assign({}, { category_id: categoryId }, cardInfo)
-    const newCard = Card.add(newParams)
+    const newCard = await Card.add(newParams)
 
     this.setState({
       cards: Card.all(),
@@ -78,9 +78,10 @@ class App extends Component {
     })
   }
 
-  _onUpdateCard(cardId, newValues = {}) {
+  async _onUpdateCard(cardId, newValues = {}) {
     const newParams = Object.assign({ id: cardId }, newValues)
-    Card.update(newParams)
+    await Card.update(newParams)
+
     this.setState({
       cards: Card.all()
     })
