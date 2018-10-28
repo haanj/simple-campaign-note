@@ -1,8 +1,10 @@
-import { Model } from './lib/Model'
-import { cards, categories } from './seeds'
+// import { Model } from './lib/Model'
+import { RemoteModel } from './lib/RemoteModel'
 
-export const Category = new Model({
-  collection: categories,
+// import { cards, categories } from './seeds'
+
+export const Category = new RemoteModel({
+  apiRoute: 'api/v1/categories',
   defaults: {
     name: 'New Category',
     description: 'This is a new Category',
@@ -10,8 +12,8 @@ export const Category = new Model({
   }
 })
 
-export const Card = new Model({
-  collection: cards,
+export const Card = new RemoteModel({
+  apiRoute: 'api/v1/cards',
   defaults: {
     name: 'New Card',
     description: 'This is a new card',

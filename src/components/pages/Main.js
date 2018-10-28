@@ -6,17 +6,15 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    const categories = Category.all()
-    const activeCategoryId = categories[0].id
-    const cards = Card.findWhere({ category_id: activeCategoryId })
-    const activeCardId = cards[0].id
-    
     this.state = { 
-      categories,
-      cards,
-      activeCategoryId,
-      activeCardId,
+      categories: [],
+      cards: [],
+      activeCategoryId: undefined,
+      activeCardId: undefined,
+      isLoading: true
     }
+
+    this._initializeCollections()
 
     this.handleAddCategory = this._onAddCategory.bind(this)
     this.handleChangeCategory = this._onChangeCategory.bind(this)
@@ -24,6 +22,24 @@ class App extends Component {
     this.handleChangeCard = this._onChangeCard.bind(this)
     this.handleAddCard = this._onAddCard.bind(this)
     this.handleUpdateCard = this._onUpdateCard.bind(this)
+  }
+
+  async _initializeCollections() {
+    await Category.fetch()
+    await Card.fetch()
+
+    const categories = Category.all()
+    const activeCategoryId = categories[0] && categories[0].id
+    const cards = Card.findWhere({ category_id: activeCategoryId })
+    const activeCardId = cards[0] && cards[0].id
+    
+    this.setState({ 
+      categories,
+      cards,
+      activeCategoryId,
+      activeCardId,
+      isLoading: false
+    })
   }
 
   _onChangeCategory(id) {
