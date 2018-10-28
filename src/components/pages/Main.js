@@ -8,7 +8,7 @@ class App extends Component {
 
     const categories = Category.all()
     const activeCategoryId = categories[0].id
-    const cards = Card.findWhere({ categoryId: activeCategoryId })
+    const cards = Card.findWhere({ category_id: activeCategoryId })
     const activeCardId = cards[0].id
     
     this.state = { 
@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   _onChangeCategory(id) {
-    const cards = Card.findWhere({ categoryId: id })
+    const cards = Card.findWhere({ category_id: id })
     const activeCard = cards[0] || {}
 
     this.setState({
@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   _onAddCard(categoryId, cardInfo) {
-    const newParams = Object.assign({}, { categoryId }, cardInfo)
+    const newParams = Object.assign({}, { category_id: categoryId }, cardInfo)
     const newCard = Card.add(newParams)
 
     this.setState({
@@ -77,7 +77,7 @@ class App extends Component {
 
   getActiveCards() {
     const activeCategoryId = this.state.activeCategoryId
-    return Card.findWhere({ categoryId: activeCategoryId })
+    return Card.findWhere({ category_id: activeCategoryId })
   }
 
   _onChangeCard(id) {

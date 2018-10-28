@@ -15,6 +15,6 @@ export const Card = new Model({
   defaults: {
     name: 'New Card',
     description: 'This is a new card',
-    text: 'Insert text here' 
+    content: 'Insert text here' 
   }
 })
